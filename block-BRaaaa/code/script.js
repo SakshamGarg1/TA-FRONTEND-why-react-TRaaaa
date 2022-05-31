@@ -1,54 +1,56 @@
-let input = document.querySelector('input[type="text"]');
-let rootElm =document.querySelector('movies_list');
+let input = document.querySelector("input");
+let rootElm =document.querySelector("ul");
 
-let allMovies=[
+let allMovies = [
     {
-        name: " Mangal Pandey",
+        name: ' Mangal Pandey',
         watched: false,
     },
     {
-        name: " Bagban ",
-        watched: false,
-    },
+        name: ' SpiderMan ',
+        watched: true,
+    }
 ];
 
 
 input.addEventListener('keyup',(event)=>{
-    if (event.keyCode === 13) {
-        console.log(event.target.value);
-        allMovie.push({
+    if(event.key === "Enter") {
+        allMovies.push({
             name: event.target.value,
-            watched : false,
-        })
-        createMovieUI();
+            watched : false,  
+        });
+        event.target.value = '';
+        createMovieUI(allMovies,rootElm);
     }
 });
 
-function movieDelete(event){
-    event.target.parentElement.remove();
- 
+function handleChange(event){
+    let id = event.target.id;
+
+    allMovies[id].watched = !allMovies[id].watched;
+    createMovieUI(allMovies,rootElm);
 }
 
-function createMovieUI(){
 
-    rootElm.innerHTML="";
 
-    allMovies.forEach((movie,i)=>{
+function createMovieUI(data,root){
+
+    root.innerHTML= '';
+    data.forEach((movie,i)=>{
     let li = document.createElement('li');
-    let input = document.createElement('input');
-    input.classList.add('styled-checkbox');
-    input.type ="checkbox";
-    input.id=i;
+    let button = document.createElement('button');
+    button.id=i;
+    button.innerText = movie.watched ? 'Watched' : 'To Watch';
+    button.addEventListener('click', handleChange);
     let label = document.createElement('label');
     label.for = i;
-    input.checked = movie.watched;
     label.innerText = movie.name;
-    let span = document.createElement('span');
-    span.innerText="X";
 
-    li.append(input,label,span)
+    li.append(label,button)
 
     rootElm.append(li);
 });
-createMovieUI();
 }
+
+createMovieUI(allMovies,rootElm);
+
