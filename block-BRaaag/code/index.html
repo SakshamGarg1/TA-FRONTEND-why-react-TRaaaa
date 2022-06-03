@@ -41,10 +41,87 @@
       <script src="./script.js"></script>
       <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<!-- Your custom script here -->
+<script type="text/babel"> 
+
+let input = document.querySelector("input");
+ let rootElm = document.querySelector("ul");
+
+ let allMovies = [
+  {
+    name: ' Mangal Pandey',
+    watched: false,
+},
+{
+    name: ' SpiderMan ',
+    watched: true,
+}
+ ];
+
+ input.addEventListener("keyup", (event) => {
+   if (event.key === "Enter") {
+     let movie = {
+       name: event.target.value,
+       watched: false,
+     };
+     allMovies.push(movie);
+     event.target.value = "";
+   }
+   createUI(allMovies, rootElm);
+ });
+
+ function handleClick(event) {
+   let id = event.target.id;
+   allMovies[id].watched = !allMovies[id].watched;
+   createUI(allMovies, rootElm);
+ }
+
+ let elm = React.createElement;
+
+//  function createUI(movies, root) {
+//    let movieList = movies.map((movie, id) => {
+//      let li = elm(
+//        "li",
+//        {
+//          className: "movie-list-item",
+//        },
+//        elm("span", {}, movie.name),
+//        elm(
+//          "button",
+//          {
+//            className: "btn",
+//            id: id,
+//            onClick: handleClick,
+//          },
+//          movie.watched ? "Watched" : "To Watch"
+//        )
+//      );
+// });
+//    ReactDOM.render(movieList, root);
+//  }
+     return <li>  
+      <span htmlFor = {}>{movie.name}</span>
+      <button id={id} onClick={ handleClick }> { movie.watched ? "Watched" : "To Watch" }  </button>
+    </li> 
+
+    //  <li>  
+    //   <span htmlFor = {}>{movie.name}</span>
+    //   <button id={id} onClick={ handleClick }> { movie.watched ? "Watched" : "To Watch" }  </button>
+    // </li> 
+
+
+
+  
+
+ createUI(allMovies, rootElm);
+
+</script>
     </main>
   </body>
 </html>
 
 
 </body>
-</html>
+</html> 
