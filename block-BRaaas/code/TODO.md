@@ -31,7 +31,7 @@
 
 5.
 
-- Use the data given below
+- Use the data given below..
 
 ```js
 let fruits = [
