@@ -5,3 +5,15 @@
 - All the props that a component accepts should be validated
 
 [Typechecking With PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
+
+
+
+Article.propTypes = {
+    author: PropTypes.string,
+    content: PropTypes.string,
+    description: PropTypes.string,
+    publishedAt: PropTypes.string,
+    title: PropTypes.string,
+    url: PropTypes.string,
+
+  };
